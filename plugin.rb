@@ -161,7 +161,7 @@ after_initialize do
   class ::CookedPostProcessor
     def update_post_image
       img = extract_images_for_post.first
-      if img["src"].present?
+      if !img.nil? && img["src"].present?
         url = img["src"][0...255]
         @post.update_column(:image_url, url) # post
         if @post.is_first_post?
